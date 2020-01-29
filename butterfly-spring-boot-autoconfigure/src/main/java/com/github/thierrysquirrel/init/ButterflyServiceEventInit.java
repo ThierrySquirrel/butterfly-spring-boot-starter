@@ -24,6 +24,7 @@ import com.github.thierrysquirrel.netty.core.factory.MethodContainerFactory;
 import com.github.thierrysquirrel.netty.domain.constant.Command;
 import com.github.thierrysquirrel.netty.domain.constant.Modular;
 import com.github.thierrysquirrel.netty.service.core.utils.AnnotatedMethodsUtils;
+import lombok.Data;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
@@ -37,6 +38,7 @@ import javax.annotation.PostConstruct;
  * @author ThierrySquirrel
  * @since JDK 1.8
  */
+@Data
 public class ButterflyServiceEventInit implements ApplicationContextAware {
 
     private ApplicationContext applicationContext;

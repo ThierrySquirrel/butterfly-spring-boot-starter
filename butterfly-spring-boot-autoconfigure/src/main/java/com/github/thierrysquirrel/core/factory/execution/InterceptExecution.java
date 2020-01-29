@@ -18,6 +18,7 @@ package com.github.thierrysquirrel.core.factory.execution;
 
 import com.github.thierrysquirrel.annotation.Butterfly;
 import com.github.thierrysquirrel.annotation.Flutter;
+import com.github.thierrysquirrel.core.factory.FilterFactory;
 import com.github.thierrysquirrel.error.ButterflyException;
 import com.github.thierrysquirrel.netty.core.client.factory.ClientFactory;
 import com.github.thierrysquirrel.netty.core.client.factory.PineRequestContextFactory;
@@ -43,6 +44,7 @@ public class InterceptExecution {
         String serviceUrl = ProduceNameFactoryExecution.getServiceUrl (serviceName);
         String serviceCoordinate = coordinate.value ();
         PineRequestContext rpcRequest = PineRequestContextFactory.createRpcRequest (serviceCoordinate, args);
+        FilterFactory.butterflyFilter(rpcRequest);
         try {
             PineRequestContext request = ClientFactory.request (serviceUrl, rpcRequest);
             return request.getPineResponse ().getData ();

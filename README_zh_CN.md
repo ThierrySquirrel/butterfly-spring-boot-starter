@@ -5,11 +5,15 @@
 [English](./README.md)
 
 支持功能：
-- [x] RPC远程调用
+- [x] RPC远程调用  
+- [X] 过滤器  
 
 # RPC远程调用： 
  使用松树提供的对外扩展的组件  
- 提供负载均衡的'半长连接'RPC工具
+ 提供负载均衡的'半长连接'RPC工具  
+ 
+# 过滤器:  
+ 过滤请求和响应的数据   
  
 ## Quick Start
 
@@ -18,7 +22,7 @@
         <dependency>
             <artifactId>butterfly-spring-boot-starter</artifactId>
             <groupId>com.github.thierrysquirrel</groupId>
-            <version>1.0.2-RELEASE</version>
+            <version>1.1.0-RELEASE</version>
         </dependency>
 ``` 
 
@@ -87,3 +91,25 @@ public class Demo {
     }
 }
  ```
+
+# 过滤器  
+
+```java
+@ButterflyFilter
+public class ConsumerFilter implements Filter {
+	@Override
+	public void filter(PineRequestContextFilterDomain pineRequestContextFilterDomain) {
+        pineRequestContextFilterDomain.setAttachment("key","value");        	
+	}
+}
+```  
+
+```java
+@FlowerFilter
+public class ProducerFilter implements Filter {
+	@Override
+	public void filter(PineRequestContextFilterDomain pineRequestContextFilterDomain) {
+		pineRequestContextFilterDomain.getAttachment("key");	
+	}
+}
+```

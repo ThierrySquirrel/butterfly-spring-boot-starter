@@ -19,7 +19,9 @@ package com.github.thierrysquirrel.autoconfigure;
 import com.github.thierrysquirrel.annotation.EnableButterfly;
 import com.github.thierrysquirrel.aspect.ButterflyAspect;
 import com.github.thierrysquirrel.core.factory.constant.ComponentScanConstant;
+import com.github.thierrysquirrel.init.ButterflyFilterInit;
 import com.github.thierrysquirrel.init.ButterflyServiceEventInit;
+import com.github.thierrysquirrel.init.FlowerFilterInit;
 import com.github.thierrysquirrel.init.FlowerInit;
 import com.github.thierrysquirrel.netty.service.init.ButterflyServiceInit;
 import com.github.thierrysquirrel.netty.service.init.GetPineServiceProducerNameInit;
@@ -85,4 +87,17 @@ public class ButterflyAutoConfiguration {
     public PingPineServiceInit pingPineServiceInit() {
         return new PingPineServiceInit (butterflyProperties);
     }
+
+    @Bean
+    @ConditionalOnMissingBean(ButterflyFilterInit.class)
+    public ButterflyFilterInit butterflyFilterInit(){
+        return new ButterflyFilterInit();
+    }
+
+    @Bean
+    @ConditionalOnMissingBean(FlowerFilterInit.class)
+    public FlowerFilterInit flowerFilterInit(){
+        return new FlowerFilterInit();
+    }
+
 }

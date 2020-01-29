@@ -16,6 +16,7 @@
 
 package com.github.thierrysquirrel.netty.service.thread.execution;
 
+import com.github.thierrysquirrel.core.factory.FilterFactory;
 import com.github.thierrysquirrel.netty.core.factory.ArgsConversionFactory;
 import com.github.thierrysquirrel.netty.core.factory.execution.EventExecutionContainerFactoryExecution;
 import com.github.thierrysquirrel.netty.domain.PineRequest;
@@ -36,26 +37,27 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 public class ButterflyServiceBusinessThreadExecution extends AbstractButterflyServiceBusinessThread {
-    public ButterflyServiceBusinessThreadExecution(ChannelHandlerContext ctx, PineRequestContext msg) {
-        super (ctx, msg);
-    }
+	public ButterflyServiceBusinessThreadExecution(ChannelHandlerContext ctx, PineRequestContext msg) {
+		super(ctx, msg);
+	}
 
-    @Override
-    protected void butterflyServiceBusinessExecution(ChannelHandlerContext ctx, PineRequestContext msg) {
-        Modular modular = msg.getModular ();
-        Command command = msg.getCommand ();
-        PineRequest pineRequest = msg.getPineRequest ();
-        Object[] args;
-        if (pineRequest != null) {
-            args = ArgsConversionFactory.getArgs (ctx, msg, pineRequest.getParameters ());
-        } else {
-            args = ArgsConversionFactory.getArgs (ctx, msg);
-        }
+	@Override
+	protected void butterflyServiceBusinessExecution(ChannelHandlerContext ctx, PineRequestContext msg) {
+		FilterFactory.flowerFilter(msg);
+		Modular modular = msg.getModular();
+		Command command = msg.getCommand();
+		PineRequest pineRequest = msg.getPineRequest();
+		Object[] args;
+		if (pineRequest != null) {
+			args = ArgsConversionFactory.getArgs(ctx, msg, pineRequest.getParameters());
+		} else {
+			args = ArgsConversionFactory.getArgs(ctx, msg);
+		}
 
-        try {
-            EventExecutionContainerFactoryExecution.execution (modular, command, args);
-        } catch (Exception e) {
-            log.error ("BusinessThreadExecution Error", e);
-        }
-    }
+		try {
+			EventExecutionContainerFactoryExecution.execution(modular, command, args);
+		} catch (Exception e) {
+			log.error("BusinessThreadExecution Error", e);
+		}
+	}
 }

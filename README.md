@@ -10,7 +10,10 @@ Support function:
 # RPC Remote call： 
  Use the components provided by pine for external expansion    
  Provide 'half long connection' RPC tool for load balancing  
- 
+
+# Filter:  
+ Filtering data for requests and responses  
+  
 ## Quick Start
 
 ```xml
@@ -18,7 +21,7 @@ Support function:
         <dependency>
             <artifactId>butterfly-spring-boot-starter</artifactId>
             <groupId>com.github.thierrysquirrel</groupId>
-            <version>1.0.2-RELEASE</version>
+            <version>1.1.0-RELEASE</version>
         </dependency>
 ``` 
 
@@ -86,4 +89,26 @@ public class Demo {
         return consumer.hello ();
     }
 }
- ```
+ ```  
+
+# Filter  
+
+```java
+@ButterflyFilter
+public class ConsumerFilter implements Filter {
+	@Override
+	public void filter(PineRequestContextFilterDomain pineRequestContextFilterDomain) {
+        pineRequestContextFilterDomain.setAttachment("key","value");        	
+	}
+}
+```  
+
+```java
+@FlowerFilter
+public class ProducerFilter implements Filter {
+	@Override
+	public void filter(PineRequestContextFilterDomain pineRequestContextFilterDomain) {
+		pineRequestContextFilterDomain.getAttachment("key");	
+	}
+}
+```

@@ -22,6 +22,7 @@ import com.github.thierrysquirrel.core.domain.FlowerMethodDomain;
 import com.github.thierrysquirrel.core.factory.FlowerMethodDomainContainerFactory;
 import com.github.thierrysquirrel.core.factory.FlowerMethodDomainFactory;
 import com.github.thierrysquirrel.netty.service.core.utils.AnnotatedMethodsUtils;
+import lombok.Data;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
@@ -35,6 +36,7 @@ import javax.annotation.PostConstruct;
  * @author ThierrySquirrel
  * @since JDK 1.8
  */
+@Data
 public class FlowerInit implements ApplicationContextAware {
     private ApplicationContext applicationContext;
 
