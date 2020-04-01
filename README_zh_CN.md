@@ -22,7 +22,7 @@
         <dependency>
             <artifactId>butterfly-spring-boot-starter</artifactId>
             <groupId>com.github.thierrysquirrel</groupId>
-            <version>1.2.0-RELEASE</version>
+            <version>1.2.2-RELEASE</version>
         </dependency>
 ``` 
 

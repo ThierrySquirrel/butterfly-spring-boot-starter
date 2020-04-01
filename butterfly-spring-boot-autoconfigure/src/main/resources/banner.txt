@@ -9,4 +9,4 @@ ${AnsiColor.BRIGHT_GREEN}
      `\       /'
        `-._.-'
           `
-butterfly version:1.2.0.RELEASE
+butterfly version:1.2.2.RELEASE
