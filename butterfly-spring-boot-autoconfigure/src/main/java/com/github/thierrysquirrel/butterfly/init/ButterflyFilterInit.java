@@ -20,7 +20,6 @@ import com.github.thierrysquirrel.butterfly.annotation.ButterflyFilter;
 import com.github.thierrysquirrel.butterfly.core.factory.ButterflyFilterFactory;
 import com.github.thierrysquirrel.butterfly.core.filter.Filter;
 import lombok.Data;
-import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
@@ -44,7 +43,7 @@ public class ButterflyFilterInit implements ApplicationContextAware {
 	}
 
 	@Override
-	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+	public void setApplicationContext(ApplicationContext applicationContext) {
 		this.applicationContext = applicationContext;
 	}
 }
